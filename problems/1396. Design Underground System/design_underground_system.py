@@ -46,8 +46,8 @@ if __name__ == "__main__":
     assert obj.getAverageTime("Leyton", "Paradise") == 5.5
     obj.checkIn(2, "Leyton", 21)
     obj.checkOut(2, "Paradise", 30)
-    from math import isclose
 
+    from math import isclose
     assert isclose(obj.getAverageTime("Leyton", "Paradise"), 6.66667, abs_tol=10 ** -5)
 
     print("PASSED!!!")
