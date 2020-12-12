@@ -8,11 +8,10 @@ class UndergroundSystem:
 
     def checkOut(self, id: int, end_station_name: str, end_time: int) -> None:
         start_station_name, start_time = self._current_rides.pop(id)
-        ride_total_time, rides = self._rides_stats.setdefault(
-            (start_station_name, end_station_name), (0, 0)
-        )
-        self._rides_stats[(start_station_name, end_station_name)] = (
-            ride_total_time + end_time - start_time,
+        ride_name = (start_station_name, end_station_name)
+        total, rides = self._rides_stats.get(ride_name, (0, 0))
+        self._rides_stats[ride_name] = (
+            total + end_time - start_time,
             rides + 1,
         )
 
