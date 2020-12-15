@@ -1,61 +1,58 @@
-"""Longest Substring Without Repeating Characters."""
+"""Longest Substring Without Repeating Characters.
+
+    Second method (using dict) to keep track of the current processing
+    string is about 1.5-3 times slower.
+"""
 from timeit import timeit
 
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
+        """Using list of chars to keep current substring."""
+        str_list = []
         answer = 0
-        current_longest = ""
 
         for c in s:
-            if c in current_longest:
-                answer = max(len(current_longest), answer)
-                current_longest = c
-            else:
-                current_longest += c
+            if c in str_list:
+                str_list = str_list[str_list.index(c) + 1 :]
+            str_list.append(c)
+            answer = max(answer, len(str_list))
 
         return answer
 
     def lengthOfLongestSubstring_2(self, s: str) -> int:
-        answer = 0
-        current_map = set()
-
-        for c in s:
-            if c in current_map:
-                answer = max(len(current_map), answer)
-                current_map = set(c)
-            else:
-                current_map.add(c)
-
-        return answer
-
-    def lengthOfLongestSubstring_3(self, s: str) -> int:
-        n = len(s)
-        answer = 0
+        """Using dict for keeping track of latest position of chars."""
         # mp stores the current index of a character
-        current_map = {}
+        hm = {}
+        max_length = 0
+        start_index = 0
 
-        i = 0
-        # try to extend the range [i, j]
-        for j in range(n):
-            if s[j] in current_map:
-                i = max(current_map[s[j]], i)
+        for i, c in enumerate(s, start=1):
+            if c in hm:
+                start_index = max(hm[c], start_index)
+            max_length = max(max_length, i - start_index)
+            hm[c] = i
 
-            answer = max(answer, j - i + 1)
-            current_map[s[j]] = j + 1
-
-        return answer
+        return max_length
 
 
 if __name__ == "__main__":
     solution = Solution()
-    inputs = ["abcabcbb", "bbbbb", "pwwkew"]
-    expected = [len("abc"), len("b"), len("wke")]
+    inputs = ["abba", "abcabcbb", "bbbbb", "pwwkew", "aab", "dvdf", " ", ""]
+    expected = [
+        len("ab"),
+        len("abc"),
+        len("b"),
+        len("wke"),
+        len("ab"),
+        len("vdf"),
+        1,
+        0,
+    ]
 
     funcs = [
         solution.lengthOfLongestSubstring,
         solution.lengthOfLongestSubstring_2,
-        solution.lengthOfLongestSubstring_3,
     ]
     for f, input, expect in (
         (f, i, e) for i, e in zip(inputs, expected) for f in funcs
