@@ -14,11 +14,10 @@ class Solution:
             if i and chars[i] == chars[i - 1]:
                 chars.pop(i)
                 counter += 1
-            else:
-                if counter > 1:
-                    for j, c in enumerate(str(counter), start=1):
-                        chars.insert(i + j, c)
-                    counter = 1
+            elif counter > 1:
+                for j, c in enumerate(str(counter), start=1):
+                    chars.insert(i + j, c)
+                counter = 1
         return len(chars)
 
     def compress_2(self, chars: list[str]) -> int:
