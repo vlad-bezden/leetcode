@@ -11,8 +11,7 @@ class Solution:
         curr_max = total_max = nums[0]
         for n in nums[1:]:
             curr_max = max(n, curr_max + n)
-            if total_max < curr_max:
-                total_max = curr_max
+            total_max = max(total_max, curr_max)
         return total_max
 
 
