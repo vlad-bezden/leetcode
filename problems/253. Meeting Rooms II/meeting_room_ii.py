@@ -63,10 +63,7 @@ class Solution:
         events.sort()
 
         for event in events:
-            if event[1] == START:
-                curr_rooms += 1
-            else:
-                curr_rooms -= 1
+            curr_rooms += 1 if event[1] == START else -1
             max_rooms = max(max_rooms, curr_rooms)
         return max_rooms
 
