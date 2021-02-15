@@ -11,7 +11,7 @@ class Solution:
         for b in s:
             if b in pairs:
                 stack.append(b)
-            elif not stack or b != pairs[stack.pop()]:
+            elif stack and b != pairs[stack.pop()]:
                 return False
         return not stack
 
