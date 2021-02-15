@@ -21,14 +21,14 @@ Output: 1<br/>
 __Example 3:__<br/>
 Input: nums = [0]<br/>
 Output: 0<br/>
-Example 4:<br/>
 
-__Input 4:__<br/>
+__Example 4:__<br/>
+Input 4:<br/>
 nums = [-1]<br/>
 Output: -1<br/>
-Example 5:<br/>
 
-__Input 5:__<br/>
+__Example 5__:<br/>
+Input 5:<br/>
 nums = [-2147483647]<br/>
 Output: -2147483647<br/>
 
