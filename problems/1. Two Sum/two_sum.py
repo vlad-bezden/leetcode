@@ -1,6 +1,9 @@
+from typing import Optional
+
+
 class Solution:
-    def twoSum(self, nums: list[int], target: int) -> list[int]:
-        hash = {}
+    def twoSum(self, nums: list[int], target: int) -> Optional[list[int]]:
+        hash: dict[int, int] = {}
         for i, v in enumerate(nums):
             if (i2 := hash.get(target - v)) is not None:
                 return [i2, i]
