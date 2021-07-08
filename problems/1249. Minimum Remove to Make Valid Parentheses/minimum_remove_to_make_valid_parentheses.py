@@ -4,8 +4,6 @@ class Solution:
         word = list(s)
         stack = []
         for i, c in enumerate(word):
-            if c not in "()":
-                continue
             if c == "(":
                 stack.append(i)
             elif c == ")":
