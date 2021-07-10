@@ -13,7 +13,7 @@ from timeit import timeit
 
 class Solution:
     @staticmethod
-    def generate_1(num_rows: int) -> list[list[int]]:
+    def generate(num_rows: int) -> list[list[int]]:
         """Using enumerator"""
         res = [[1]]
 
@@ -35,11 +35,11 @@ if __name__ == "__main__":
     inputs = ((5, [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]), (1, [[1]]))
 
     for input, expected in inputs:
-        output = Solution.generate_1(input)
+        output = Solution.generate(input)
         assert output == expected, f"{input=}, {output=}, {expected=}"
 
     s = Solution
-    for f in [s.generate_1, s.generate_2]:
+    for f in [s.generate, s.generate_2]:
         t = timeit(stmt=f"f({20})", number=10_000, globals=globals())
         print(f"{f.__name__} took: {t:.4f}")
 
