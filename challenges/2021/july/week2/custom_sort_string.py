@@ -1,21 +1,22 @@
 """Custom Sort String
 
     https://leetcode.com/explore/challenge/card/july-leetcoding-challenge-2021/609/week-2-july-8th-july-14th/3813/
+
+    "Your runtime beats 100% of python3 submissions"
 """
 
 
 class Solution:
     @staticmethod
     def customSortString(order: str, str: str) -> str:
-        letters_mapper = {c: i for i, c in enumerate(order)}
-        # 26 chars + 1 for storing all chars that are not in the order
-        buckets = [[] for _ in range(26 + 1)]
+        """Sort string in custom order based on 'order' spec
 
-        for c in str:
-            # all chars that map to mapper goes to their buckets
-            # the chars that are not in the mapper goes to the last bucket
-            buckets[letters_mapper.get(c, 26)].append(c)
-        return "".join("".join(c) for c in buckets if c)
+        All letters that are in order will be sorted based on letters_mapper
+        and any letter that is not in the mapper will be assigned value beyond
+        number of characters in English alphabet
+        """
+        letters_mapper = {c: i for i, c in enumerate(order)}
+        return "".join(sorted(str, key=lambda c: letters_mapper.get(c, 27)))
 
 
 if __name__ == "__main__":
