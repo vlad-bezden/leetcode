@@ -1,3 +1,7 @@
+# python libs
+numpy
+
+# dev tools
 flake8
 black
 mypy
