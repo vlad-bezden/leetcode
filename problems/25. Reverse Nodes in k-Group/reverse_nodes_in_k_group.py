@@ -31,8 +31,9 @@ class Solution:
     @staticmethod
     def reverseKGroup(head: ListNode, k: int) -> ListNode:
         curr_node = head
+        prev_node = None
+        k_group = []
         while curr_node:
-            k_group = []
             for _ in range(k):
                 k_group.append(curr_node)
                 curr_node = curr_node.next
@@ -40,8 +41,19 @@ class Solution:
                     break
             if len(k_group) < k:
                 break
-            for i in range(k // 2):
-                k_group[i].val, k_group[~i].val = k_group[~i].val, k_group[i].val
+            last_node = k_group[-1]
+            node = k_group.pop()
+            while k_group:
+                temp = k_group.pop()
+                node.next = temp
+                node = temp
+            temp.next = curr_node
+            if prev_node:
+                prev_node.next = last_node
+            else:
+                head = last_node
+            prev_node = node
+
         return head
 
 
