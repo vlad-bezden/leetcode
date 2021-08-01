@@ -11,7 +11,7 @@
     * Both the left and right subtrees must also be binary search trees.
 """
 
-from libs.binary_tree import TreeNode, to_binary_tree
+from libs.binary_tree import TreeNode, to_tree
 
 
 class Solution:
@@ -32,13 +32,13 @@ class Solution:
 if __name__ == "__main__":
 
     inputs = [
-        (to_binary_tree([10, 0, 25, -1, 21, 16, 32]), False),
-        (to_binary_tree([10, -10, 19, -20, 0, 17, None]), True),
-        (to_binary_tree([2, 1, 3]), True),
-        (to_binary_tree([5, 1, 4, None, None, 3, 6]), False),
-        (to_binary_tree([2, 2, 2]), False),
-        (to_binary_tree([5, 4, 6, None, None, 3, 7]), False),
-        (to_binary_tree([3, 1, 5, 0, 2, 4, 6]), True),
+        (to_tree([10, 0, 25, -1, 21, 16, 32]), False),
+        (to_tree([10, -10, 19, -20, 0, 17, None]), True),
+        (to_tree([2, 1, 3]), True),
+        (to_tree([5, 1, 4, None, None, 3, 6]), False),
+        (to_tree([2, 2, 2]), False),
+        (to_tree([5, 4, 6, None, None, 3, 7]), False),
+        (to_tree([3, 1, 5, 0, 2, 4, 6]), True),
     ]
 
     for input, expected in inputs:
