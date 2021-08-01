@@ -1,4 +1,4 @@
-from typing import Iterable
+from typing import Iterable, Optional
 
 
 class TreeNode:
@@ -14,7 +14,7 @@ class TreeNode:
         return str(self.val)
 
 
-def to_binary_tree(items: Iterable[int]) -> TreeNode:
+def to_tree(items: Iterable[Optional[int]]) -> TreeNode:
     """Create BT from list of values."""
     n = len(items)
     if n == 0:
@@ -31,3 +31,22 @@ def to_binary_tree(items: Iterable[int]) -> TreeNode:
         return node
 
     return inner()
+
+
+def to_bfs_list(root: Optional[TreeNode]) -> Iterable[Optional[int]]:
+    """Convert Tree to list.
+
+    This list is leetcode specific, since it doesn't show None values of the
+    leaf node (node that has both left and right nodes None)
+    """
+    result = []
+    this_level = [root]
+    while this_level:
+        next_level = []
+        for n in this_level:
+            result.append(n.val if n else None)
+            if n and (n.left or n.right):
+                next_level.append(n.left)
+                next_level.append(n.right)
+        this_level = next_level
+    return result
