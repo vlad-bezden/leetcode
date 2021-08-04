@@ -16,10 +16,10 @@ class Solution:
             # base case
             if index >= length:
                 return
-            s = set()
+            seen = set()
             for i, v in enumerate(nums[index:], start=index):
-                if v not in s:
-                    s.add(v)
+                if v not in seen:
+                    seen.add(v)
                     helper(i + 1, sublist + [v])
 
         helper(0, [])
