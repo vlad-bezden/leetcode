@@ -9,12 +9,13 @@ class Solution:
     def longestCommonPrefix(strings: list[str]) -> str:
         if len(strings) == 1:
             return strings[0]
-        answer = []
+        answer = ""
         for chars in zip(*strings):
-            if len(set(chars)) != 1:
+            if len(set(chars)) == 1:
+                answer += chars[0]
+            else:
                 break
-            answer.append(chars[0])
-        return "".join(answer)
+        return answer
 
 
 if __name__ == "__main__":
