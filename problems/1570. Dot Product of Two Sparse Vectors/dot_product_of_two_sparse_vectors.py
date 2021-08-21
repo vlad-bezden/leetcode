@@ -3,15 +3,13 @@ from __future__ import annotations
 
 class SparseVector:
     def __init__(self, nums: list[int]) -> None:
-        # reversed map (index: value)
-        self.map = {i: v for i, v in enumerate(nums) if v}
+        self.map = {i: v for i, v in enumerate(nums)}
 
     # Return the dotProduct of two sparse vectors
     def dotProduct(self, vec: SparseVector) -> int:
+        f, s = self.map, vec.map
         # find shortest dict
-        f, s = (
-            (self.map, vec.map) if len(self.map) < len(vec.map) else (vec.map, self.map)
-        )
+        f, s = (f, s) if len(f) < len(s) else (s, f)
         return sum(v * s.get(i, 0) for i, v in f.items())
 
 
