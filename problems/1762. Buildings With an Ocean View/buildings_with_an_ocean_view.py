@@ -3,7 +3,7 @@ class Solution:
     def findBuildings(heights: list[int]) -> list[int]:
         result = []
         max_height = 0
-        for i in range(len(heights) - 1, -1, -1):
+        for i in reversed(range(len(heights))):
             if (h := heights[i]) > max_height:
                 result.append(i)
                 max_height = h
