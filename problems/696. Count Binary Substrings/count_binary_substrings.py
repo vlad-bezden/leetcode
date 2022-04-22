@@ -1,23 +1,25 @@
 """696. Count Binary Substrings.
 
+Level: Easy
+
 https://leetcode.com/problems/count-binary-substrings/
 """
 
 
 class Solution:
     @staticmethod
-    def countBinarySubstrings(string: str) -> int:
-        result = 0
-        prev = 0
+    def countBinarySubstrings(s: str) -> int:
         current = 1
-        for i, c in enumerate(string[1:]):
-            if string[i] != c:
-                result += min(prev, current)
-                prev = current
-                current = 1
+        prev = 0
+        result = 0
+
+        for p, c in zip(s, s[1:]):
+            if p != c:
+                result += min(current, prev)
+                prev, current = current, 1
             else:
                 current += 1
-        return result + min(prev, current)
+        return min(current, prev) + result
 
 
 if __name__ == "__main__":
