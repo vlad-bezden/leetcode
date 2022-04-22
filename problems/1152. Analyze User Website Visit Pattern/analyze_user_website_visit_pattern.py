@@ -18,32 +18,28 @@ class Solution:
 
         formated_data = defaultdict(list)
 
+        # create dict with k=user and v=visited sites
         for u, _, w in sorted_data:
             formated_data[u].append(w)
 
         pattern = defaultdict(int)
 
-        for u in formated_data:
-            visit = set()
-            n = len(formated_data[u])
+        for u, w in formated_data.items():
+            visited = set()
 
-            for i in range(0, n - 2):
-                for j in range(i + 1, n - 1):
-                    for k in range(j + 1, n):
-                        p = (
-                            formated_data[u][i],
-                            formated_data[u][j],
-                            formated_data[u][k],
-                        )
+            # create paterns from visited sites
+            for i, w1 in enumerate(w[:-2]):
+                for j, w2 in enumerate(w[i + 1 : -1], start=i + 1):
+                    for w3 in w[j + 1 :]:
+                        p = (w1, w2, w3)
 
-                        if p not in visit:
-                            visit.add(p)
+                        # count times of visited paterns
+                        if p not in visited:
+                            visited.add(p)
                             pattern[p] += 1
 
-        max_value = max(pattern.values())
-        keys_with_max_value = [
-            items[0] for items in pattern.items() if items[1] == max_value
-        ]
+        max_visited = max(pattern.values())
+        keys_with_max_value = [k for k, v in pattern.items() if v == max_visited]
 
         return list(sorted(keys_with_max_value)[0])
 
