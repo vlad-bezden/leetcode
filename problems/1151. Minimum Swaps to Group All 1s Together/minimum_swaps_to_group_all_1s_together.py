@@ -24,20 +24,18 @@ total ones and the max number of ones found so far.
 class Solution:
     @staticmethod
     def minSwaps(data: list[int]) -> int:
-        total_once = sum(data)
-        if total_once <= 1:
+        total_ones = sum(data)
+        if total_ones <= 1:
             return 0
-        max_seen_once = current_seen_once = 0
-        lp = 0
+        max_seen_ones = 0  # max ones in a window of length ones [i:i+ones]
+        current_seen_ones = sum(data[:total_ones])
 
-        for rp, rv in enumerate(data):
-            current_seen_once += rv
-            if (rp - lp) >= total_once:
-                current_seen_once -= data[lp]
-                lp += 1
-            max_seen_once = max(current_seen_once, max_seen_once)
+        for rp, rv in enumerate(data[total_ones:], start=total_ones):
+            max_seen_ones = max(max_seen_ones, current_seen_ones)
+            current_seen_ones += rv
+            current_seen_ones -= data[rp - total_ones]
 
-        return total_once - max_seen_once
+        return total_ones - max(max_seen_ones, current_seen_ones)
 
 
 if __name__ == "__main__":
