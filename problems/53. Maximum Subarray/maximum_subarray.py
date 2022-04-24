@@ -7,11 +7,12 @@
 
 
 class Solution:
-    def maxSubArray(self, nums: list[int]) -> int:
-        curr_max = total_max = nums[0]
+    @staticmethod
+    def maxSubArray(nums: list[int]) -> int:
+        current_max = total_max = nums[0]
         for n in nums[1:]:
-            curr_max = max(n, curr_max + n)
-            total_max = max(total_max, curr_max)
+            current_max = max(n, current_max + n)
+            total_max = max(total_max, current_max)
         return total_max
 
 
