@@ -17,9 +17,7 @@ class Solution:
         answer = 0
 
         while lp <= rp:
-            # mid = (lp + rp) // 2 doesn't work
-            # this is the only right way of doing it
-            mid = lp + (rp - lp) // 2
+            mid = (lp + rp) // 2
             if (mid * mid) <= x:
                 answer = mid
                 lp = mid + 1
