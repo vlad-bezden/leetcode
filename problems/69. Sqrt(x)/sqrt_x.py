@@ -30,6 +30,6 @@ if __name__ == "__main__":
     for i in range(100):
         expected = math.floor(math.sqrt(i))
         result = Solution.mySqrt(i)
-        assert result == expected, print(f"{i =}, {result = }, {expected = }")
+        assert result == expected, f"{i =}, {result = }, {expected = }"
 
     print("PASSED!!!")
