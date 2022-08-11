@@ -9,23 +9,23 @@ NO_KEY_FOUND = -1
 
 
 class LRUCache:
-    def __init__(self, capacity: int):
-        self._data = OrderedDict()
+    def __init__(self, capacity: int) -> None:
         self._capacity = capacity
+        self._data = OrderedDict()
 
-    def get(self, key: int) -> int:
-        result = self._data.get(key, NO_KEY_FOUND)
-        if result != NO_KEY_FOUND:
-            self._data.move_to_end(key)
-        return result
+    def get(self, k: int) -> int:
+        v = self._data.get(k, NO_KEY_FOUND)
 
-    def put(self, key: int, value: int) -> None:
-        if key in self._data:
-            self._data[key] = value
-            self._data.move_to_end(key)
-        elif len(self._data) >= self._capacity:
+        if v != NO_KEY_FOUND:
+            self._data.move_to_end(k)
+        return v
+
+    def put(self, k: int, v: int) -> None:
+        if k in self._data:
+            self._data.move_to_end(k)
+        self._data[k] = v
+        if len(self._data) > self._capacity:
             self._data.popitem(last=False)
-        self._data[key] = value
 
 
 if __name__ == "__main__":
