@@ -1,5 +1,7 @@
 """21. Merge Two Sorted Lists.
 
+Level: Easy
+
 https://leetcode.com/problems/merge-two-sorted-lists/
 """
 from libs.linked_list import ListNode, to_linked_list, to_list
@@ -17,7 +19,7 @@ class Solution:
                 head.next = l2
                 l2 = l2.next
             head = head.next
-        head.next = l1 if l1 else l2
+        head.next = l1 or l2
         return answer.next
 
 
