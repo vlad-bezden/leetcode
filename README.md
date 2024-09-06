@@ -1,11 +1,14 @@
 # Solutions for my LeetCode problems
+Solutions to leetcode problems
 
-Problems that I selected are from [LEETCODE PATTERNS](https://seanprashad.com/leetcode-patterns/)
-
+## Instalation
+```bash
+git clone git@github.com:vlad-bezden/leetcode.git
+```
 
 In order to use `libs` module, close VS Code, then execute
-```
-❯ export PYTHONPATH=.
+```bash
+export PYTHONPATH=.
 ```
 from the terminal and open VS Code again
 ```
