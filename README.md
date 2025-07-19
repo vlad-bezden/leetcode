@@ -3,7 +3,11 @@ Solutions to leetcode problems
 
 ## Instalation
 ```bash
-git clone git@github.com:vlad-bezden/leetcode.git
+uv venv
+```
+  
+```bash
+uv pip install -i git@github.com:vlad-bezden/leetcode.git
 ```
 
 In order to use `libs` module, close VS Code, then execute
